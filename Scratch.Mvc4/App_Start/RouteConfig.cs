@@ -15,15 +15,18 @@ namespace Scratch.Mvc4
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+
+            string entityRoute = string.Concat("entity/{", Constants.GenericRouteName, "}/{action}/{id}/");
             routes.MapRoute(
                 name: "Entity",
-                url: Constants.EntityRoute,
+                url: entityRoute,
                 defaults: new { id = RouteParameter.Optional, controller = "Entity", action = "Index" }
             );
-            
+
+            string entityApiRoute = string.Concat("entityapi/{", Constants.GenericRouteName, "}/{id}");
             routes.MapHttpRoute(
                 name: "EntityApi",
-                routeTemplate: Constants.EntityApiRoute,
+                routeTemplate: entityApiRoute,
                 defaults: new { id = RouteParameter.Optional, controller = "EntityApi" }
             );
 
